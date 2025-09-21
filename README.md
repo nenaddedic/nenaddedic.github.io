@@ -1,2 +1,2 @@
-# nenaddedic.github.com
+# nenaddedic.github.io
 github.io page
