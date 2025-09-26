@@ -1,39 +1,29 @@
-import React from 'react';
-import { Pixel, generateBmp } from './render/bitmap';
+import { SceneColor } from "./scene/sceneObject";
 
+export class Pixel {
+  r: number;
+  g: number;
+  b: number;
+  a?: number;
 
-const App: React.FC = () => {
-  return (
-    <div>
-      <h1>Hello from React!</h1>
-      <p>This component is rendered using Vite.</p>
-      <Bmap />
-    </div>
-  );
-}
-
-const Bmap: React.FC = () => {
-  return (
-    <div>
-      <h2>This is a custom bmap component</h2>
-      <p>It can be used to display maps or other related content.</p>
-      <img src={"data:image/bmp;base64," + btoa(String.fromCharCode(...generateRedBitmap(50, 5)))} alt="5x5 red bitmap" />
-    </div>
-  );
-}
-
-function generateRedBitmap(width: number, height: number): Uint8ClampedArray {
-  let a = new Array(height);
-  for (let i = 0; i < height; i++) {
-    a[i] = new Array(width);
-    for (let j = 0; j < width; j++) {
-      a[i][j] = new Pixel(255, 255, 0);
-    }
+  constructor(r: number, g: number, b: number) {
+    this.r = r;
+    this.g = g;
+    this.b = b;
   }
-  return generateBmp(a);
+
+  static fromSceneColor(color: SceneColor) {
+    return new Pixel(
+      Math.floor(color.r * 255),
+      Math.floor(color.g * 255),
+      Math.floor(color.b * 255)
+    );
+  }
 }
 
-function generateBlackBitmap(width: number, height: number): Uint8Array {
+export function generateBmp(data: Array<Array<Pixel>>): Uint8ClampedArray {
+  const height = data.length;
+  const width = data[0].length;
   const bitsPerPixel = 24;
   // Each row must be a multiple of 4 bytes.
   const rowSize = Math.floor((bitsPerPixel * width + 31) / 32) * 4;
@@ -82,10 +72,24 @@ function generateBlackBitmap(width: number, height: number): Uint8Array {
   // Number of important colors (0 means all are important)
   view.setUint32(50, 0, true);
 
-  // Pixel Data (all black)
-  // The pixel data is already 0 (black) because ArrayBuffer is initialized with zeros.
-  // We just need to return the byte array.
-  return new Uint8Array(buffer);
-}
+  let i = fileOffset;
+  for (let y = height-1; y >= 0; y--) {
+    let rowBytesWritten = 0;
+    for (let x = 0; x < width; x++) {
+      let pixel = new Pixel(0,0,0);
+      if (x < data[height - 1 - y].length) {
+        pixel = data[height - 1 - y][x]; // BMP stores pixels bottom-to-top
+      }
+      view.setUint8(i++, pixel.b);
+      view.setUint8(i++, pixel.g);
+      view.setUint8(i++, pixel.r);
+      rowBytesWritten += 3;
+    }
+    // Padding
+    for (let p = 0; p < rowSize - rowBytesWritten; p++) {
+      view.setUint8(i++, 0);
+    }
+  }
 
-export default App;
+  return new Uint8ClampedArray(buffer);
+}
