@@ -21,10 +21,17 @@ export class SceneColor {
     static white() {
         return new SceneColor(1.0, 1.0, 1.0);
     }
+
+    multipliedBy(factor: number): SceneColor {
+        return new SceneColor(
+            Math.min(this.r * factor, 1.0),
+            Math.min(this.g * factor, 1.0),
+            Math.min(this.b * factor, 1.0));
+    }
 }
 
 export interface SceneObject {
-    intersectWithRay(ray: Ray): Array<Point>;
+    intersectWithRay(ray: Ray): [Point, number][];
     getColor?(): SceneColor;
 }
 
@@ -43,6 +50,7 @@ export class SphereSceneObject implements SceneObject {
     getColor() {
         return this.color;
     }
+    
 }
 
 export function test() {
@@ -50,6 +58,6 @@ export function test() {
     let ray = new Ray({x:0, y:0, z:0}, new Vector(0, 0, 1));
     let intersections = sphere.intersectWithRay(ray);
     console.assert(intersections.length === 2, `Expected 2 intersections, got ${intersections.length}`);
-    console.assert(Math.abs(intersections[0].z - 9) < 1e-6, `Expected first intersection at z=9, got z=${intersections[0].z}`);
-    console.assert(Math.abs(intersections[1].z - 11) < 1e-6, `Expected second intersection at z=11, got z=${intersections[1].z}`);
+    console.assert(Math.abs(intersections[0][0].z - 9) < 1e-6, `Expected first intersection at z=9, got z=${intersections[0][0].z}`);
+    console.assert(Math.abs(intersections[1][0].z - 11) < 1e-6, `Expected second intersection at z=11, got z=${intersections[1][0].z}`);
 }
