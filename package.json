@@ -29,6 +29,8 @@
     "vite": "^7.1.7"
   },
   "dependencies": {
+    "@google/genai": "^1.21.0",
+    "dotenv": "^17.2.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   }
