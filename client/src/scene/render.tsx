@@ -1,6 +1,6 @@
 import { Scene } from "./scene";
 import { Camera } from "./camera";
-import { Pixel } from "../bitmap";
+import { Pixel } from "./bitmap";
 import { Ray, Point, Vector } from "../geometry/geometry";
 import { SceneObject } from "./sceneObject";
 

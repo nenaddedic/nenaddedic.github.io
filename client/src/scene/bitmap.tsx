@@ -1,4 +1,4 @@
-import { SceneColor } from "./scene/sceneObject";
+import { SceneColor } from "./sceneObject";
 
 export class Pixel {
   r: number;

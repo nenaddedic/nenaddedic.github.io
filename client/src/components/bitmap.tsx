@@ -1,4 +1,4 @@
-import { Pixel } from "../bitmap";
+import { Pixel } from "../scene/bitmap";
 import React, { useEffect, useRef } from "react";
     
 export default function Bitmap({ pixels }: { pixels: Pixel[][] }) {

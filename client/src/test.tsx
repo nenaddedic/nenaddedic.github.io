@@ -1,5 +1,5 @@
-import { test, test as testGeometry } from "./render/geometry/geometry";
-import { test as testScene} from "./render/scene/sceneObject";
+import { test, test as testGeometry } from "./geometry/geometry";
+import { test as testScene} from "./scene/sceneObject";
 
 export function runTests() {
     for (let t of [testGeometry, testScene]) {
