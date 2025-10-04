@@ -1,0 +1,10 @@
+{
+  "name": "nenaddedic-github-io",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server",
+    "shared_types"
+  ]
+}
