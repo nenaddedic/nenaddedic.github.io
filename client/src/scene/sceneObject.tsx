@@ -1,4 +1,4 @@
-import { Ray, Sphere, Point, Vector } from "../geometry/geometry";
+import { Ray, Sphere, Point, Vector } from "../geometry/geometry.js";
 
 export class SceneColor {
     r: number;

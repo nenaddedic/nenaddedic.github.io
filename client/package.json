@@ -11,12 +11,12 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "@google-cloud/run": "^3.0.0",
     "@google/genai": "^0.12.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@nenaddedic-github-io/shared_types": "^1.0.0",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
@@ -27,7 +27,6 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "gh-pages": "^6.3.0",
     "typescript": "^5.2.2",
-    "vite": "^5.2.0",
-    "@nenaddedic-shared-types/shared_types": "^1.0.0"
+    "vite": "^5.2.0"
   }
 }

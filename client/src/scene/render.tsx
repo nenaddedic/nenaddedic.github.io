@@ -1,8 +1,8 @@
-import { Scene } from "./scene";
-import { Camera } from "./camera";
-import { Pixel } from "./bitmap";
-import { Ray, Point, Vector } from "../geometry/geometry";
-import { SceneObject } from "./sceneObject";
+import { Scene } from "./scene.js";
+import { Camera } from "./camera.js";
+import { Pixel } from "./bitmap.js";
+import { Ray, Point, Vector } from "../geometry/geometry.js";
+import { SceneObject } from "./sceneObject.js";
 
 type IntersectionResult = { point: Point; object: any; cosineAngle: number };
 
@@ -62,4 +62,3 @@ export function render(scene: Scene, camera: Camera, width: number, height: numb
     console.log(`Calculation took ${Date.now() - t} ms`);
     return out;
 }
-

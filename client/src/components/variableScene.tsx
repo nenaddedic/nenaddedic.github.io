@@ -1,16 +1,25 @@
-import react from "react";
-import { TextInput } from "./textInput";
-import { SceneColor, SphereSceneObject } from "../scene/sceneObject";
-import { Point, Ray, Sphere, Vector } from "../geometry/geometry";
-import { Scene } from "../scene/scene";
-import RenderedScene from "./renderedScene";
-import { Camera } from "../scene/camera";
-import { parseScene } from "../parse/parseScene";
+import react, { useEffect } from "react";
+import { TextInput } from "./textInput.js";
+import { SceneColor, SphereSceneObject } from "../scene/sceneObject.js";
+import { Point, Ray, Sphere, Vector } from "../geometry/geometry.js";
+import { Scene } from "../scene/scene.js";
+import RenderedScene from "./renderedScene.js";
+import { Camera } from "../scene/camera.js";
+import { parseScene } from "../parse/parseScene.js";
+import {generate} from "../rpc_clients/gatewayService.js";
 
 export default function VariableScene({width, height}: {width?: number, height?: number}) {
     const [numObjects, setNumObjects] = react.useState("1");
     const [scene, setScene] = react.useState(new Scene());
     const [description, setDescription] = react.useState("1 red sphere in the center");
+
+    useEffect(() => {
+        const f = async () => {
+            const r = await generate("hello world");
+            setDescription(r);
+        }
+        f();
+    }, []);
 
     function handleTextChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
         setNumObjects(event.target.value);
@@ -49,5 +58,3 @@ export default function VariableScene({width, height}: {width?: number, height?:
         </div>
     );
 }
-
-

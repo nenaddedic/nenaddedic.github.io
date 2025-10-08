@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { runTests } from './test';
-import VariableScene from './components/variableScene';
+import { runTests } from './test.js';
+import VariableScene from './components/variableScene.js';
+import { generate } from './rpc_clients/gatewayService.js';
 
 runTests();
 // runTests(); // You can re-enable this if needed

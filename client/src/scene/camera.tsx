@@ -1,4 +1,4 @@
-import { Point, Ray, Vector } from "../geometry/geometry";
+import { Point, Ray, Vector } from "../geometry/geometry.js";
 
 export class Camera {
     direction: Ray = new Ray(new Point(0, 0, -1), new Vector(0, 0, 1)); // points forward

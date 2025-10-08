@@ -1,9 +1,9 @@
-import { Scene } from "../scene/scene";
-import { SphereSceneObject } from "../scene/sceneObject";
-import { Point, Vector, Sphere } from "../geometry/geometry";
-import { SceneColor } from "../scene/sceneObject";
-import { Camera } from "../scene/camera";
-import { Ray } from "../geometry/geometry";
+import { Scene } from "../scene/scene.js";
+import { SphereSceneObject } from "../scene/sceneObject.js";
+import { Point, Vector, Sphere } from "../geometry/geometry.js";
+import { SceneColor } from "../scene/sceneObject.js";
+import { Camera } from "../scene/camera.js";
+import { Ray } from "../geometry/geometry.js";
 
 // Top level object representing a scene to be rendered.
 interface SerializedScene {

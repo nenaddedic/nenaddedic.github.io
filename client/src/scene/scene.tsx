@@ -1,5 +1,4 @@
-import { Sphere } from "../geometry/geometry";
-import { SceneObject, SphereSceneObject } from "./sceneObject";
+import { SceneObject, SphereSceneObject } from "./sceneObject.js";
 
 export class Scene {
     objects: Array<SceneObject>;
