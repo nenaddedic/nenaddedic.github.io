@@ -12,6 +12,8 @@ export default function VariableScene({width, height}: {width?: number, height?:
     const [numObjects, setNumObjects] = react.useState("1");
     const [scene, setScene] = react.useState(new Scene());
     const [description, setDescription] = react.useState("1 red sphere in the center");
+    const [sceneDescription, setSceneDescription] = react.useState("something");
+
 
     useEffect(() => {
         const f = async () => {
@@ -39,9 +41,11 @@ export default function VariableScene({width, height}: {width?: number, height?:
         setScene(scene);
     }
 
-    function handleDescriptionChange(event: React.ChangeEvent<HTMLInputElement>) {
+    async function handleDescriptionChange(event: React.ChangeEvent<HTMLInputElement>) {
         console.log("Handling description change " + event.target.value.length);
         setDescription(event.target.value);
+        var resp = await generate(event.target.value);
+        setSceneDescription(resp);
         let scene = parseScene(event.target.value)
         setScene(scene);
     }
@@ -53,6 +57,7 @@ export default function VariableScene({width, height}: {width?: number, height?:
     return (
         <div>
             <h1>Variable Scene</h1>
+            <p>{sceneDescription}</p>
             <TextInput initialValue={description} onChange={handleDescriptionChange} />
             <RenderedScene scene={scene} camera={camera} width={width ? width : 200} height={height ? height : 200} />
         </div>
