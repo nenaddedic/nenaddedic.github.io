@@ -1,0 +1,1 @@
+export const EXTERNAL_DEPS = ['@google-cloud/functions-framework']

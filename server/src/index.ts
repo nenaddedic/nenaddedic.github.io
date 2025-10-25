@@ -5,6 +5,8 @@ import cors from 'cors';
 const gatewayService = new GatewayService();
 
 export async function gatewayRpcEndpoint(req: Request, resp: Response) {
+    console.log(req);
+    console.log('++++');
     console.log(req.path);
     console.log(req.body);
     console.log('-----------------------');
