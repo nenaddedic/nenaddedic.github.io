@@ -12,8 +12,8 @@ export async function gatewayRpcEndpoint(req: Request, resp: Response) {
     console.log('-----------------------');
 
     const corsHandler = cors({
-        origin: '*',
-        methods: ['GET', 'POST', 'PUT', 'DELETE']
+        origin: 'https://nenaddedic.github.io',
+        methods: ['GET', 'POST']
     });
 
     corsHandler(req, resp, async () => {
