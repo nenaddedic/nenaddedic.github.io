@@ -15,6 +15,7 @@ export function render(scene: Scene, camera: Camera, width: number, height: numb
         let cosineAngle = 0;
 
         for (const obj of scene.getObjects()) {
+            //console.log("rendering: " + obj);
             const intersection = obj.intersectWithRay(ray);
             if (intersection.length > 0) {
                 const d = new Vector(intersection[0][0].x - ray.origin.x,

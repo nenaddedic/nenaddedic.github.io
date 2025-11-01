@@ -51,6 +51,7 @@ interface SerializedObject {
 }
 
 export function parseScene(input: string): Scene {
+    console.log("Parsing scene: " + input);
     const data = JSON.parse(input) as SerializedScene;
     const scene = new Scene();
     for (const obj of data.objects) {

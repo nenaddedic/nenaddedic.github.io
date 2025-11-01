@@ -1,10 +1,12 @@
 import { GenerateFromPromptRequest, GenerateFromPromptResponse } from "@nenaddedic-github-io/shared_types";
+import { withMainPrompt, stripToJSON } from "./prompt.js";
 
 const url_base = import.meta.env.VITE_GATEWAY_SERVICE_URL;
 
-export async function generate(prompt_: string): Promise<string> {
-    const req:GenerateFromPromptRequest = {prompt: prompt_};
-    console.log("generate:" + JSON.stringify(req));
+export async function generate(desc: string): Promise<string> {
+    //console.log(withMainPrompt(desc));
+    const req:GenerateFromPromptRequest = {prompt: withMainPrompt(desc)};
+    //console.log("generate:" + JSON.stringify(req));
     var res;
     try {
          res = await fetch(url_base + "/generateFromPrompt", {
@@ -23,6 +25,6 @@ export async function generate(prompt_: string): Promise<string> {
         return "";
     }
     const resp:GenerateFromPromptResponse = await res.json();
-    console.log(resp);
-    return resp.text
+    //console.log(resp);
+    return stripToJSON(resp.text);
 }

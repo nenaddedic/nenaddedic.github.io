@@ -42,22 +42,22 @@ export default function VariableScene({width, height}: {width?: number, height?:
     }
 
     async function handleDescriptionChange(event: React.ChangeEvent<HTMLInputElement>) {
-        console.log("Handling description change " + event.target.value.length);
+        console.log("Handling description change " + event.target.value);
         setDescription(event.target.value);
         var resp = await generate(event.target.value);
+        console.log("resp: " + resp);
         setSceneDescription(resp);
-        let scene = parseScene(event.target.value)
+        let scene = parseScene(resp);
         setScene(scene);
     }
 
     let camera = new Camera(
-        new Ray(new Point(0, 40, -100), new Vector(0, 0, 1)),
+        new Ray(new Point(0, 0, -100), new Vector(0, 0, 1)),
         new Vector(1, 0, 0),
         0.8);
     return (
         <div>
             <h1>Variable Scene</h1>
-            <p>{sceneDescription}</p>
             <TextInput initialValue={description} onChange={handleDescriptionChange} />
             <RenderedScene scene={scene} camera={camera} width={width ? width : 200} height={height ? height : 200} />
         </div>

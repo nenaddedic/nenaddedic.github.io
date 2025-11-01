@@ -27,7 +27,7 @@ export function TextInput({initialValue, onChange}: TextInputProps) {
   }
   return (
     <div>
-      <textarea value={val} onChange={handleNativeChange} onBlur={handleBlur} onKeyDown={handleKeyDown} />
+      <textarea cols="80" rows="10" value={val} onChange={handleNativeChange} onBlur={handleBlur} onKeyDown={handleKeyDown} />
     </div>
   );
 }
