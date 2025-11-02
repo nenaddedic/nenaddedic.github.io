@@ -15,20 +15,20 @@ export function TextInput({initialValue, onChange}: TextInputProps) {
     setVal(event.target.value);
   }
   function handleBlur(event: React.FocusEvent<HTMLTextAreaElement>) {
-    console.log("Blur event, committing");
+    //console.log("Blur event, committing");
     commit();
   }
   function handleKeyDown(event: React.KeyboardEvent<HTMLTextAreaElement>) {
-    console.log("Key down event: " + event.key);
+    //console.log("Key down event: " + event.key);
     if (event.key == 'Enter') {
       event.preventDefault();
       commit();
     }
   }
   return (
-    <div>
-      <textarea cols="80" rows="10" value={val} onChange={handleNativeChange} onBlur={handleBlur} onKeyDown={handleKeyDown} />
-    </div>
+ <div>
+ <textarea cols={80} rows={10} value={val} onChange={handleNativeChange} onBlur={handleBlur} onKeyDown={handleKeyDown} />
+ </div>
   );
 }
 export default TextInput;
