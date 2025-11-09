@@ -1,3 +1,17 @@
+# Components
+
+```mermaid
+flowchart LR;
+    client[React web client; source: client/**]
+    service[our gateway service running on Google Cloud Functions; source: server/**]
+    GenAI[Google Cloud GenAI service]
+    user[user's browser]
+    
+    user-->|HTTP request|client;
+    client-->|cloud functions call, HTTP|service;
+    service-->|GenAI API call|GenAI;
+```
+
 # Configuration
 
 Environment files are in Dotenv format, that is each line contains an assignment like `VITE_GATEWAY_SERVICE_URL=http://localhost:5566`.
