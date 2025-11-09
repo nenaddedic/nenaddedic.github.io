@@ -4,9 +4,8 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "start": "npm run build && npx functions-framework --source=dist --target=gatewayRpcEndpoint --port=5566",
+    "build-local": "tsc",
+    "start-local": "npm run build-local && npx functions-framework --source=dist --target=gatewayRpcEndpoint --port=5566",
     "build-prod": "vite build && node create-dist-package-json.js",
     "deploy-prod": "gcloud functions deploy testFn --region=us-central1 --runtime=nodejs20 --source=dist/server --entry-point=gatewayRpcEndpoint --trigger-http --allow-unauthenticated --env-vars-file=.env.yaml",
     "build-deploy-prod": "npm run build-prod && npm run deploy-prod"
